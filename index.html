@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Surprise!</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f0f0f0; }
+        .overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="popup">
+        <span class="close" onclick="document.getElementById('popup').style.display='none'">&times;</span>
+        <img id="slide" src="https://i.imgur.com/first-image.jpg" alt="Cute message">
+    </div>
+
+    <script>
+        const images = [
+            "https://i.imgur.com/2h4ZSUn.jpeg",
+            "https://i.imgur.com/89Tf01j.jpeg"
+        ];
+        let current = 0;
+
+        function nextImage() {
+            current = (current + 1) % images.length;
+            document.getElementById("slide").src = images[current];
+        }
+
+        // Change image every 3 seconds
+        setInterval(nextImage, 3000);
+    </script>
+</body>
+</html>
