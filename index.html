@@ -1,1 +1,38 @@
-
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Surprise!</title>
+    <style>
+        body { margin: 0; font-family: sans-serif; background: #f0f0f0; }
+        .overlay {
+            position: fixed;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            background: rgba(0,0,0,0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+        .overlay img {
+            max-width: 90%;
+            max-height: 90%;
+            border-radius: 10px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.5);
+        }
+        .close {
+            position: absolute;
+            top: 20px;
+            right: 30px;
+            font-size: 30px;
+            color: white;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="overlay" id="popup">
+        <span class="close" onclick="document.getElementById('popup').style.display='none'">&times;</span>
+        https://imgur.com/a/IVaQI9J alt="Cute message">
+    </div>
+</body>
+</html>
