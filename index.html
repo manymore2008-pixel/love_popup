@@ -44,6 +44,7 @@
 
 <body>
 
+    <!-- POPUP -->
     <div class="overlay" id="popup" onclick="startMusic()">
         <div class="tap">Tap anywhere 💖</div>
 
@@ -53,7 +54,7 @@
     </div>
 
     <!-- 🎵 MUSIC -->
-    <audio id="music" loop>
+    <audio id="music" loop preload="auto">
         <source src="music.mp3" type="audio/mpeg">
     </audio>
 
@@ -70,9 +71,10 @@
             document.getElementById("slide").src = images[current];
         }
 
+        // slideshow every 3 sec
         setInterval(nextImage, 3000);
 
-        // 🎵 START MUSIC (MOBILE SAFE)
+        // 🎵 MUSIC CONTROL
         let started = false;
 
         function startMusic() {
@@ -81,13 +83,18 @@
 
             const music = document.getElementById("music");
 
-            music.play().then(() => {
-                console.log("Music playing 🎵");
-            }).catch(() => {
-                console.log("Tap again if needed");
-            });
+            music.muted = false;
+            music.volume = 1;
 
-            // hide tap text
+            music.play()
+                .then(() => console.log("Playing 🎵"))
+                .catch(() => {
+                    // retry for strict mobile browsers
+                    document.body.addEventListener("click", () => {
+                        music.play();
+                    }, { once: true });
+                });
+
             document.querySelector(".tap").style.display = "none";
         }
 
