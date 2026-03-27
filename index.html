@@ -29,11 +29,18 @@
         }
     </style>
 </head>
-<body>
+
+<body onclick="startMusic()">
+
     <div class="overlay" id="popup">
-        <span class="close" onclick="document.getElementById('popup').style.display='none'">&times;</span>
-        <img id="slide" src="https://i.imgur.com/first-image.jpg" alt="Cute message">
+        <span class="close" onclick="closePopup(event)">&times;</span>
+        <img id="slide" src="https://i.imgur.com/2h4ZSUn.jpeg" alt="Cute message">
     </div>
+
+    <!-- 🎵 MUSIC (MOVED INSIDE BODY) -->
+    <audio id="music" loop>
+        <source src="music.mp3" type="audio/mpeg">
+    </audio>
 
     <script>
         const images = [
@@ -47,8 +54,23 @@
             document.getElementById("slide").src = images[current];
         }
 
-        // Change image every 3 seconds
+        // slideshow
         setInterval(nextImage, 3000);
+
+        // 🎵 MUSIC START
+        let started = false;
+        function startMusic() {
+            if (started) return;
+            started = true;
+            document.getElementById("music").play();
+        }
+
+        function closePopup(event) {
+            event.stopPropagation();
+            document.getElementById("popup").style.display = "none";
+            document.getElementById("music").pause();
+        }
     </script>
+
 </body>
 </html>
